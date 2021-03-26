@@ -17,6 +17,7 @@ versions=("${versions[@]%/}")
 
 releasesPossibles=()
 rcPossibles=()
+addVersions=()
 
 GetReleases() {
   # version 支持主版本号（5）、次版本号（5.2）、具体版本号（5.2.17）
@@ -193,6 +194,8 @@ $(src/${fullVersion}/configure --help)
 - md5：${md5}
 EOF
 
+    addVersions+=("${fullVersion}")
+
     _succ "success" && _info "cleanup source src/${fullVersion} $downFile"
 
     rm -rf src/${fullVersion}
@@ -201,3 +204,11 @@ EOF
   done
 
 done
+
+# commit
+if [ ! "${#addVersions[@]}" -eq 0 ]; then
+  git config --local user.email "action@github.com"
+  git config --local user.name "GHA"
+  git add .
+  git commit -m "🤖 Add ${addVersions[*]}" -a
+fi
