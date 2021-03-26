@@ -3,7 +3,7 @@ set -Eeuo pipefail
 
 . public.sh
 
-# Modify From https://github.com/docker-library/php/blob/master/versions.sh
+# Modify From https://github.com/docker-library/php/blob/64811791f0682262478d73514819908fcfe73d7f/versions.sh
 
 cd "$(dirname "$(readlink -f "$BASH_SOURCE")")"
 

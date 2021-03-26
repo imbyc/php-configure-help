@@ -1,4 +1,4 @@
-# modify From https://github.com/docker-library/php/blob/master/version-id.jq
+# modify From https://github.com/0xbyc/php-configure-help/blob/a7e82e9e15d865c3c82f95a43a78e838e8e97d19/version-id.jq
 def version_id:
 	# https://www.php.net/phpversion
 	# $version_id = $major_version * 10000 + $minor_version * 100 + $release_version;
