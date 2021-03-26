@@ -209,6 +209,6 @@ done
 if [ ! "${#addVersions[@]}" -eq 0 ]; then
   git config --local user.email "action@github.com"
   git config --local user.name "GHA"
-  git add .
+  git add docs/
   git commit -m "🤖 Add ${addVersions[*]}" -a
 fi
