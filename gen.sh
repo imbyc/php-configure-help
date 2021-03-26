@@ -172,7 +172,7 @@ for version in "${versions[@]}"; do
 
     # 下载文件
     downFile="php-${fullVersion}.tar.gz"
-    [ ! -f "$downFile" ] && _info "download ${downFile}" && wget -c "$url" -O "$downFile"
+    [ ! -f "$downFile" ] && _info "download ${downFile}" && wget -c "$url" -qO "$downFile"
 
     #    tar -xzvf "$fileName" -C src/${fullVersion} php-${fullVersion}/configure --strip-components=1
 
