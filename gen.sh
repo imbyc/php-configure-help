@@ -99,9 +99,9 @@ for version in "${versions[@]}"; do
   export version majorVersion minorVersion cleanVersion startVersion
 
   if [ "$version" = "$majorVersion" ] || [ "$version" = "$minorVersion" ]; then
-    # majorVersion = version 时如果传进来的是大版本为5,跳过5.2以下的低版本
+    # majorVersion = version 时如果传进来的是大版本为5,跳过5.6以下的低版本
     if [ "$version" = "$majorVersion" ] && [ $version = "5" ]; then
-      startVersion="5.1.0"
+      startVersion="5.6.0"
     fi
     GetReleases ${cleanVersion}
     GetRC
