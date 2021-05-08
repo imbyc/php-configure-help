@@ -1,8 +1,8 @@
 name: Gen Task
 
 on:
-#  push:
-#    branches: [ main ]
+  push:
+    branches: [ main ]
   schedule:
     - cron: '0 0 */3 * *' # 3天一次 0点
 
