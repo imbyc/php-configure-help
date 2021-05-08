@@ -17,7 +17,7 @@ jobs:
       - name: 检查更新并生成markdown文档
         run: |
           chmod u+x ./gen.sh
-          ./gen.sh
+          ./gen.sh 7 8
       - name: Push更新到当前仓库
         uses: ad-m/github-push-action@master
         with:
