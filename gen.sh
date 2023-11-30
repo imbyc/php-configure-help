@@ -44,7 +44,6 @@ GetReleases() {
 			 ]
 		'
   IFS=$'\n'
-  curl -fsSL "$apiUrl" |jq --raw-output "$apiJqExpr | @sh" |sort -rV
   releasesPossibles=($(
     curl -fsSL "$apiUrl" |
       jq --raw-output "$apiJqExpr | @sh" |
@@ -68,7 +67,7 @@ GetRC() {
 			]
 		'
   IFS=$'\n'
-  curl -fsSL "$apiUrl" |jq --raw-output "$apiJqExpr | @sh" |sort -rV
+  curl -fsSL "$apiUrl" |jq --raw-output ".releases[]"
   rcPossibles=($(
     curl -fsSL "$apiUrl" |
       jq --raw-output "$apiJqExpr | @sh" |
@@ -105,8 +104,8 @@ for version in "${versions[@]}"; do
     if [ "$version" = "$majorVersion" ] && [ $version = "5" ]; then
       startVersion="5.6.0"
     fi
-    GetReleases ${cleanVersion}
-    #GetRC
+    #GetReleases ${cleanVersion}
+    GetRC
   elif [ "$version" = "$cleanVersion" ]; then
     GetReleases ${cleanVersion}
   else
