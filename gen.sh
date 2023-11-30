@@ -55,7 +55,7 @@ GetReleases() {
 GetRC() {
   apiUrl='https://qa.php.net/api.php?type=qa-releases&format=json'
   apiJqExpr='
-			.releases[]
+			(.releases // [])[]
 			| select(.version | startswith(env.startVersion))
 			| [
 				.version,
@@ -67,7 +67,7 @@ GetRC() {
 			]
 		'
   IFS=$'\n'
-  curl -fsSL "$apiUrl" |jq --raw-output ".releases[]"
+  curl -fsSL "$apiUrl" |jq --raw-output "(.releases // [])[]"
   rcPossibles=($(
     curl -fsSL "$apiUrl" |
       jq --raw-output "$apiJqExpr | @sh" |
