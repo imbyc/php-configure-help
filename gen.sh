@@ -106,7 +106,7 @@ for version in "${versions[@]}"; do
       startVersion="5.6.0"
     fi
     GetReleases ${cleanVersion}
-    GetRC
+    #GetRC
   elif [ "$version" = "$cleanVersion" ]; then
     GetReleases ${cleanVersion}
   else
