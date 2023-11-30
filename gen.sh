@@ -68,6 +68,7 @@ GetRC() {
 			]
 		'
   IFS=$'\n'
+  curl -fsSL "$apiUrl" |jq --raw-output "$apiJqExpr | @sh" |sort -rV
   rcPossibles=($(
     curl -fsSL "$apiUrl" |
       jq --raw-output "$apiJqExpr | @sh" |
