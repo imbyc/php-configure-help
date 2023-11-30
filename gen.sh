@@ -44,6 +44,7 @@ GetReleases() {
 			 ]
 		'
   IFS=$'\n'
+  cat curl -fsSL "$apiUrl" | jq '.'
   releasesPossibles=($(
     curl -fsSL "$apiUrl" |
       jq --raw-output "$apiJqExpr | @sh" |
