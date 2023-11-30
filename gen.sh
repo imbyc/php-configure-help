@@ -10,8 +10,8 @@ cd "$(dirname "$(readlink -f "$BASH_SOURCE")")"
 versions=("$@")
 
 if [ ${#versions[@]} -eq 0 ]; then
-  # 不传入版本号，默认5 7 8 三个大版本号
-  versions=(5 7 8)
+  # 不传入版本号，默认8 大版本号 可以 7 8 传入多个版本号
+  versions=(8)
 fi
 versions=("${versions[@]%/}")
 
@@ -44,7 +44,6 @@ GetReleases() {
 			 ]
 		'
   IFS=$'\n'
-  curl -fsSL "$apiUrl"
   releasesPossibles=($(
     curl -fsSL "$apiUrl" |
       jq --raw-output "$apiJqExpr | @sh" |
