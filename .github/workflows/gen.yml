@@ -12,9 +12,11 @@ permissions:
 jobs:
   Generate:
     runs-on: ubuntu-24.04
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: 检查更新并生成markdown文档
         run: |
