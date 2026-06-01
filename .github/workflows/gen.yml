@@ -6,19 +6,20 @@ on:
   schedule:
     - cron: '0 0 */3 * *' # 3天一次 0点
 
+permissions:
+  contents: write
+
 jobs:
   Generate:
-
     runs-on: ubuntu-24.04
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: 检查更新并生成markdown文档
         run: |
           chmod u+x ./gen.sh
           ./gen.sh 8
+
       - name: Push更新到当前仓库
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+        run: git push
