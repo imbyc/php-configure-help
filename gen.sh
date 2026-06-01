@@ -205,10 +205,79 @@ EOF
 
 done
 
+BuildVersionsIndex() {
+  [ ! -d "docs" ] && return
+
+  local tmp total i version stage major minor date dateEsc
+  local versions=()
+
+  tmp="docs/versions.json.tmp"
+
+  while IFS= read -r file; do
+    version="${file##*/}"
+    version="${version%.md}"
+    versions+=("$version")
+  done < <(find docs -maxdepth 1 -type f -name '*.md' | sort -rV)
+
+  total="${#versions[@]}"
+
+  {
+    echo "{"
+    echo "  \"total\": ${total},"
+    echo "  \"versions\": ["
+
+    for i in "${!versions[@]}"; do
+      version="${versions[$i]}"
+      major="${version%%.*}"
+      minor="${version%.*}"
+      [ "$minor" = "$version" ] && minor="${major}"
+      date="$(sed -n 's/^- 时间：//p' "docs/${version}.md" | head -n 1)"
+      dateEsc="${date//\"/\\\"}"
+
+      stage="stable"
+      if [[ "$version" =~ [Aa][Ll][Pp][Hh][Aa] ]]; then
+        stage="alpha"
+      elif [[ "$version" =~ [Bb][Ee][Tt][Aa] ]]; then
+        stage="beta"
+      elif [[ "$version" =~ [Rr][Cc] ]]; then
+        stage="rc"
+      fi
+
+      echo "    {"
+      echo "      \"version\": \"${version}\","
+      echo "      \"major\": \"${major}\","
+      echo "      \"minor\": \"${minor}\","
+      echo "      \"stage\": \"${stage}\","
+      echo "      \"date\": \"${dateEsc}\","
+      echo "      \"path\": \"docs/${version}.md\""
+      if [ "$i" -lt "$((total - 1))" ]; then
+        echo "    },"
+      else
+        echo "    }"
+      fi
+    done
+
+    echo "  ]"
+    echo "}"
+  } >"$tmp"
+
+  mv "$tmp" docs/versions.json
+}
+
+BuildVersionsIndex
+
 # commit
-if [ ! "${#addVersions[@]}" -eq 0 ]; then
+shouldCommit=0
+[ ! "${#addVersions[@]}" -eq 0 ] && shouldCommit=1
+[ -n "$(git status --porcelain -- docs/versions.json)" ] && shouldCommit=1
+
+if [ "$shouldCommit" -eq 1 ]; then
   git config --local user.email "action@github.com"
   git config --local user.name "GHA"
   git add docs/
-  git commit -m "🤖 Add ${addVersions[*]}" -a
+  if [ ! "${#addVersions[@]}" -eq 0 ]; then
+    git commit -m "🤖 Add ${addVersions[*]}" -a
+  else
+    git commit -m "🤖 更新版本索引" -a
+  fi
 fi

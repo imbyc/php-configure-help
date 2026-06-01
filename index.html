@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PHP Configure Help Index</title>
+    <meta
+      name="description"
+      content="浏览各 PHP 版本 ./configure --help 输出，支持搜索、筛选与快速跳转。"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/styles.css" />
+  </head>
+  <body>
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+
+    <main class="container">
+      <section class="hero">
+        <p class="eyebrow">php-configure-help</p>
+        <h1>All PHP <span>./configure --help</span> in One Place</h1>
+        <p class="lead">
+          从 PHP 5.x 到 8.x，快速定位编译参数输出。支持版本搜索、阶段筛选和一键跳转。
+        </p>
+
+        <div class="stat-grid">
+          <article class="stat-card">
+            <p class="stat-label">总版本</p>
+            <p class="stat-value" id="stat-total">-</p>
+          </article>
+          <article class="stat-card">
+            <p class="stat-label">稳定版</p>
+            <p class="stat-value" id="stat-stable">-</p>
+          </article>
+          <article class="stat-card">
+            <p class="stat-label">预发布</p>
+            <p class="stat-value" id="stat-prerelease">-</p>
+          </article>
+          <article class="stat-card">
+            <p class="stat-label">最新收录</p>
+            <p class="stat-value mono" id="stat-latest">-</p>
+            <p class="stat-sub mono" id="stat-latest-date">-</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="toolbar">
+          <label class="search-wrap" for="search-input">
+            <span>搜索版本</span>
+            <input id="search-input" type="search" placeholder="例如: 8.4 / RC / alpha" />
+          </label>
+
+          <div class="filter-group" id="stage-filters">
+            <button class="chip is-active" data-stage="all">全部</button>
+            <button class="chip" data-stage="stable">Stable</button>
+            <button class="chip" data-stage="rc">RC</button>
+            <button class="chip" data-stage="beta">Beta</button>
+            <button class="chip" data-stage="alpha">Alpha</button>
+          </div>
+        </div>
+
+        <div class="major-filters" id="major-filters"></div>
+
+        <p class="result-meta" id="result-meta">加载中...</p>
+
+        <div class="version-grid" id="version-grid"></div>
+      </section>
+    </main>
+
+    <template id="version-card-template">
+      <article class="version-card">
+        <p class="version-tag"></p>
+        <h2 class="version-name mono"></h2>
+        <p class="version-stage"></p>
+        <p class="version-date mono"></p>
+        <div class="version-actions">
+          <a class="btn btn-primary" target="_blank" rel="noopener noreferrer">查看文档</a>
+          <a class="btn btn-ghost" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+      </article>
+    </template>
+
+    <script src="assets/app.js"></script>
+  </body>
+</html>
