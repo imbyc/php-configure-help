@@ -1,6 +1,14 @@
 {
-  "total": 684,
+  "total": 686,
   "versions": [
+    {
+      "version": "8.5.8RC1",
+      "major": "8",
+      "minor": "8.5",
+      "stage": "rc",
+      "date": "18 June 2026",
+      "path": "docs/8.5.8RC1.md"
+    },
     {
       "version": "8.5.7RC2",
       "major": "8",
@@ -232,6 +240,14 @@
       "stage": "stable",
       "date": "20 Nov 2025",
       "path": "docs/8.5.0.md"
+    },
+    {
+      "version": "8.4.23RC1",
+      "major": "8",
+      "minor": "8.4",
+      "stage": "rc",
+      "date": "18 Jun 2026",
+      "path": "docs/8.4.23RC1.md"
     },
     {
       "version": "8.4.22RC1",
