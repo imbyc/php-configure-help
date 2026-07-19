@@ -1,6 +1,14 @@
 {
-  "total": 691,
+  "total": 694,
   "versions": [
+    {
+      "version": "8.6.0alpha2",
+      "major": "8",
+      "minor": "8.6",
+      "stage": "alpha",
+      "date": "16 July 2026",
+      "path": "docs/8.6.0alpha2.md"
+    },
     {
       "version": "8.6.0alpha1",
       "major": "8",
@@ -8,6 +16,14 @@
       "stage": "alpha",
       "date": "2 July 2026",
       "path": "docs/8.6.0alpha1.md"
+    },
+    {
+      "version": "8.5.9RC1",
+      "major": "8",
+      "minor": "8.5",
+      "stage": "rc",
+      "date": "16 July 2026",
+      "path": "docs/8.5.9RC1.md"
     },
     {
       "version": "8.5.8RC1",
@@ -256,6 +272,14 @@
       "stage": "stable",
       "date": "20 Nov 2025",
       "path": "docs/8.5.0.md"
+    },
+    {
+      "version": "8.4.24RC1",
+      "major": "8",
+      "minor": "8.4",
+      "stage": "rc",
+      "date": "16 July 2026",
+      "path": "docs/8.4.24RC1.md"
     },
     {
       "version": "8.4.23RC1",
