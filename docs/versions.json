@@ -1,5 +1,5 @@
 {
-  "total": 711,
+  "total": 712,
   "versions": [
     {
       "version": "8.6.0beta3",
@@ -800,6 +800,14 @@
       "stage": "rc",
       "date": "26 Sep 2024",
       "path": "docs/8.4.0RC1.md"
+    },
+    {
+      "version": "8.3.35",
+      "major": "8",
+      "minor": "8.3",
+      "stage": "stable",
+      "date": "24 Sep 2026",
+      "path": "docs/8.3.35.md"
     },
     {
       "version": "8.3.33",
